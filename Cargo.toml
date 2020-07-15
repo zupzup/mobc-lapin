@@ -1,0 +1,26 @@
+[package]
+name = "mobc-lapin"
+version = "0.5.1"
+authors = ["Mario Zupan <mario@zupzup.org>"]
+license = "MIT/Apache-2.0"
+description = "RabbitMQ support for the async mobc connection pool"
+repository = "https://github.com/zupzup/mobc-lapin/tree/master"
+edition = "2018"
+readme = "README.md"
+keywords = ["rabbitmq", "pool", "queue", "async", "lapin"]
+
+include = [
+  "Cargo.toml",
+  "LICENSE-APACHE",
+  "LICENSE-MIT",
+  "src/**/*",
+]
+
+[dependencies]
+mobc = "0.5"
+lapin = "1.2"
+
+[dev-dependencies]
+tokio = { version = "0.2", features = ["rt-threaded", "macros", "time"] }
+tokio-amqp = "0.1"
+futures = { version = "0.3", default-features = false }
