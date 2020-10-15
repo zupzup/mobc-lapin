@@ -1,6 +1,6 @@
 [package]
 name = "mobc-lapin"
-version = "0.5.1"
+version = "0.5.2"
 authors = ["Mario Zupan <mario@zupzup.org>"]
 license = "MIT/Apache-2.0"
 description = "RabbitMQ support for the async mobc connection pool"
@@ -18,7 +18,7 @@ include = [
 
 [dependencies]
 mobc = "0.5"
-lapin = "1.2"
+lapin = "1.4"
 
 [dev-dependencies]
 tokio = { version = "0.2", features = ["rt-threaded", "macros", "time"] }
