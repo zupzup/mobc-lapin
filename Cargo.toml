@@ -1,6 +1,6 @@
 [package]
 name = "mobc-lapin"
-version = "0.5.2"
+version = "0.6.0"
 authors = ["Mario Zupan <mario@zupzup.org>"]
 license = "MIT/Apache-2.0"
 description = "RabbitMQ support for the async mobc connection pool"
@@ -17,10 +17,10 @@ include = [
 ]
 
 [dependencies]
-mobc = "0.5"
-lapin = "1.4"
+mobc = "0.6"
+lapin = "1.6"
 
 [dev-dependencies]
-tokio = { version = "0.2", features = ["rt-threaded", "macros", "time"] }
-tokio-amqp = "0.1"
+tokio = { version = "0.3", features = ["rt-multi-thread", "macros", "time"] }
+tokio-amqp = "0.3"
 futures = { version = "0.3", default-features = false }
