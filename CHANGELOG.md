@@ -1,3 +1,10 @@
+### 0.7.0 (2021-01-25)
+
+#### Dependency Upgrades
+
+* Upgrade `mobc` t0 0.7
+* Upgrades `tokio` to 1.1
+
 ### 0.6.0 (2020-12-03)
 
 #### Dependency Upgrades
