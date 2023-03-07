@@ -17,10 +17,11 @@ include = [
 ]
 
 [dependencies]
-mobc = "0.7"
-lapin = "1.6"
+mobc = "0.8"
+lapin = "2.1"
 
 [dev-dependencies]
-tokio = { version = "1.1", features = ["rt-multi-thread", "macros", "time"] }
-tokio-amqp = "1.0"
+tokio = { version = "1.26", features = ["rt-multi-thread", "macros", "time"] }
+tokio-executor-trait = "2.1"
+tokio-amqp = "2.0"
 futures = { version = "0.3", default-features = false }

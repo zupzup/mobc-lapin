@@ -6,7 +6,6 @@ use lapin::{
 use mobc::Pool;
 use mobc_lapin::RMQConnectionManager;
 use std::time::Duration;
-use tokio_amqp::*;
 
 const PAYLOAD: &[u8; 13] = b"Hello, World!";
 const QUEUE_NAME: &str = "test";
@@ -16,7 +15,7 @@ async fn main() {
     let addr = "amqp://rmq:rmq@127.0.0.1:5672/%2f";
     let manager = RMQConnectionManager::new(
         addr.to_owned(),
-        ConnectionProperties::default().with_tokio(),
+        ConnectionProperties::default().with_executor(tokio_executor_trait::Tokio::current()),
     );
     let pool = Pool::<RMQConnectionManager>::builder()
         .max_open(5)
@@ -49,7 +48,7 @@ async fn main() {
                         "",
                         QUEUE_NAME,
                         BasicPublishOptions::default(),
-                        PAYLOAD.to_vec(),
+                        PAYLOAD.as_ref(),
                         send_props.clone(),
                     )
                     .await
@@ -74,7 +73,7 @@ async fn main() {
 
     println!("listening to messages...");
     while let Some(delivery) = consumer.next().await {
-        let (channel, delivery) = delivery.expect("error in consumer");
+        let delivery = delivery.expect("error in consumer");
         println!("incoming message from: {:?}", delivery.properties.kind());
         channel
             .basic_ack(delivery.delivery_tag, BasicAckOptions::default())
