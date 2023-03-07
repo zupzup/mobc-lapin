@@ -25,7 +25,10 @@ use mobc::Manager;
 /// #[tokio::main]
 /// async fn main() {
 ///     let addr = "amqp://rmq:rmq@127.0.0.1:5672/%2f";
-///     let manager =RMQConnectionManager::new(addr.to_owned(), ConnectionProperties::default().with_tokio());
+///     let manager = RMQConnectionManager::new(
+///         addr.to_owned(),
+///         ConnectionProperties::default().with_executor(tokio_executor_trait::Tokio::current()),
+///     );
 ///     let pool = Pool::<RMQConnectionManager>::builder()
 ///         .max_open(5)
 ///         .build(manager);
@@ -56,7 +59,7 @@ use mobc::Manager;
 ///                         "",
 ///                         QUEUE_NAME,
 ///                         BasicPublishOptions::default(),
-///                         PAYLOAD.to_vec(),
+///                         PAYLOAD.as_ref(),
 ///                         send_props.clone(),
 ///                     )
 ///                     .await.unwrap()
@@ -79,7 +82,7 @@ use mobc::Manager;
 ///
 ///     println!("listening to messages...");
 ///     while let Some(delivery) = consumer.next().await {
-///         let (channel, delivery) = delivery.expect("error in consumer");
+///         let delivery = delivery.expect("error in consumer");
 ///         println!("incoming message from: {:?}", delivery.properties.kind());
 ///         channel
 ///             .basic_ack(delivery.delivery_tag, BasicAckOptions::default())
@@ -88,7 +91,7 @@ use mobc::Manager;
 ///         }
 /// }
 /// ```
-#[derive(Clone, Debug)]
+#[derive(Clone)]
 pub struct RMQConnectionManager {
     addr: String,
     connection_properties: ConnectionProperties,
