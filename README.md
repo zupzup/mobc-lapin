@@ -1,5 +1,5 @@
-[![CI](https://travis-ci.org/zupzup/mobc-lapin.svg?branch=master)](https://travis-ci.org/zupzup/mobc-lapin)
-[![crates.io](https://meritbadge.herokuapp.com/mobc-lapin)](https://crates.io/crates/mobc-lapin)
+[![CI](https://app.travis-ci.com/zupzup/mobc-lapin.svg?branch=main)](https://app.travis-ci.com/zupzup/mobc-lapin)
+[![crates.io](https://img.shields.io/crates/v/mobc-lapin.svg)](https://crates.io/crates/mobc-lapin)
 [![docs](https://docs.rs/mobc-lapin/badge.svg)](https://docs.rs/mobc-lapin)
 
 # mobc-lapin
